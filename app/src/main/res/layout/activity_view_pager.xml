@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_rose"
     tools:context=".ui.viewPager.ViewPagerActivity">
 
     <com.google.android.material.button.MaterialButton
@@ -26,9 +27,9 @@
         android:id="@+id/layout_onboarding_indicators"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="@id/button_onboarding_action"
         app:layout_constraintEnd_toStartOf="@id/button_onboarding_action"
