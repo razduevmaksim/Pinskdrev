@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Пинскдрев</string>
+    <string name="title_home">Home</string>
+    <string name="title_catalog">Catalog</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_account">Account</string>
+
+</resources>
