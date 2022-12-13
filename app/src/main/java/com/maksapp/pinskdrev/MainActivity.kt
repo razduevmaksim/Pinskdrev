@@ -1,8 +1,6 @@
 package com.maksapp.pinskdrev
 
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -28,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_catalog, R.id.navigation_orders, R.id.navigation_account
+                R.id.navigation_home,
+                R.id.navigation_catalog,
+                R.id.navigation_orders,
+                R.id.navigation_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
