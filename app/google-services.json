@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "327625160949",
+    "firebase_url": "https://pinskdrev-48f68-default-rtdb.firebaseio.com",
+    "project_id": "pinskdrev-48f68",
+    "storage_bucket": "pinskdrev-48f68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327625160949:android:de9f10c47a90a852d62dbc",
+        "android_client_info": {
+          "package_name": "com.maksapp.pinskdrev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327625160949-17u8up0f747oqcr9vpngkv2mvnjkpc5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf6Xi9OG3L0s2PUGZj3oETPWqO2D4c8g4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327625160949-17u8up0f747oqcr9vpngkv2mvnjkpc5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
