@@ -61,17 +61,17 @@ class ViewPagerActivity : AppCompatActivity() {
         val item1 = OnboardingItem()
         item1.title = "Title Item 1"
         item1.description = "Description Item 1"
-        item1.image = R.drawable.ic_baseline_person_24
+        item1.image = R.drawable.view_pager_1
 
         val item2 = OnboardingItem()
         item2.title = "Title Item 2"
         item2.description = "Description Item 2"
-        item2.image = R.drawable.ic_baseline_person_24
+        item2.image = R.drawable.view_pager_2
 
         val item3 = OnboardingItem()
         item3.title = "Title Item 3"
         item3.description = "Description Item 3"
-        item3.image = R.drawable.ic_baseline_person_24
+        item3.image = R.drawable.view_pager_3
 
         onboardingItems.add(item1)
         onboardingItems.add(item2)
