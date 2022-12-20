@@ -1,6 +1,5 @@
 package com.maksapp.pinskdrev.ui.catalog
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
@@ -9,17 +8,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.maksapp.pinskdrev.callback.ICategoryCallback
 import com.maksapp.pinskdrev.model.CategoryModel
-import com.maksapp.pinskdrev.model.PopularCategoryModel
 
 class CatalogViewModel : ViewModel(), ICategoryCallback {
 
     private var categoriesListMutable: MutableLiveData<List<CategoryModel>>? = null
     private var messageError: MutableLiveData<String> = MutableLiveData()
-    private var categoryCallbackListener: ICategoryCallback
-
-    init {
-        categoryCallbackListener = this
-    }
+    private var categoryCallbackListener: ICategoryCallback = this
 
     override fun onCategorySuccess(categoryList: List<CategoryModel>) {
         categoriesListMutable!!.value = categoryList
@@ -48,10 +42,9 @@ class CatalogViewModel : ViewModel(), ICategoryCallback {
         categoryRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (itemSnapshot in snapshot.children) {
-                    val model =
-                        itemSnapshot.getValue<CategoryModel>(CategoryModel::class.java)
+                    val model = itemSnapshot.getValue(CategoryModel::class.java)
                     model!!.menuId = itemSnapshot.key
-                    tempList.add(model!!)
+                    tempList.add(model)
                 }
                 categoryCallbackListener.onCategorySuccess(tempList)
             }

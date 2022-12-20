@@ -12,14 +12,11 @@ import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.model.BestDealModel
 
 class NewBestDealsAdapter(
-    internal var context: Context,
-    itemList: List<BestDealModel>,
-    isInfinite: Boolean
-) :
-    LoopingPagerAdapter<BestDealModel>(itemList, isInfinite) {
+    internal var context: Context, itemList: List<BestDealModel>, isInfinite: Boolean
+) : LoopingPagerAdapter<BestDealModel>(itemList, isInfinite) {
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
-        val imageView = convertView!!.findViewById<ImageView>(R.id.image_view_best_deal)
-        val textView = convertView!!.findViewById<TextView>(R.id.text_view_best_deal)
+        val imageView = convertView.findViewById<ImageView>(R.id.image_view_best_deal)
+        val textView = convertView.findViewById<TextView>(R.id.text_view_best_deal)
 
         Glide.with(context).load(itemList!![listPosition].image).into(imageView)
         textView.text = itemList!![listPosition].name

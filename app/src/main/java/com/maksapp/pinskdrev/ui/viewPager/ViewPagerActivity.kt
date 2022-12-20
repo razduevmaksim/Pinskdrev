@@ -107,15 +107,13 @@ class ViewPagerActivity : AppCompatActivity() {
             if (i == index) {
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
-                        applicationContext,
-                        R.drawable.onboarding_indicator_active
+                        applicationContext, R.drawable.onboarding_indicator_active
                     )
                 )
             } else {
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
-                        applicationContext,
-                        R.drawable.onboarding_indicator_inactive
+                        applicationContext, R.drawable.onboarding_indicator_inactive
                     )
                 )
             }

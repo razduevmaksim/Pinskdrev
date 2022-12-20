@@ -3,8 +3,6 @@ package com.maksapp.pinskdrev.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.common.internal.service.Common
-import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -39,7 +37,7 @@ class HomeViewModel : ViewModel(), IPopularLoadCallback, IBestDealCallback {
         bestDealRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (itemSnapshot in snapshot.children) {
-                    val model = itemSnapshot.getValue<BestDealModel>(BestDealModel::class.java)
+                    val model = itemSnapshot.getValue(BestDealModel::class.java)
                     tempList.add(model!!)
                 }
                 bestDealCallbackListener.onBestDealSuccess(tempList)
@@ -69,8 +67,7 @@ class HomeViewModel : ViewModel(), IPopularLoadCallback, IBestDealCallback {
         popularRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (itemSnapshot in snapshot.children) {
-                    val model =
-                        itemSnapshot.getValue<PopularCategoryModel>(PopularCategoryModel::class.java)
+                    val model = itemSnapshot.getValue(PopularCategoryModel::class.java)
                     tempList.add(model!!)
                 }
                 popularLoadCallbackListener.onPopularSuccess(tempList)

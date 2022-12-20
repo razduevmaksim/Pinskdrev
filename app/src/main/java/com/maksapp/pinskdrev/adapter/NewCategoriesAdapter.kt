@@ -8,45 +8,61 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.maksapp.pinskdrev.EventBus.CategoryClick
 import com.maksapp.pinskdrev.R
+import com.maksapp.pinskdrev.callback.IRecyclerItemClickListener
 import com.maksapp.pinskdrev.common.Common
 import com.maksapp.pinskdrev.model.CategoryModel
-import com.maksapp.pinskdrev.model.PopularCategoryModel
 import kotlinx.android.synthetic.main.layout_category_item.view.*
-import kotlinx.android.synthetic.main.layout_popular_categories_item.view.*
+import org.greenrobot.eventbus.EventBus
 
 class NewCategoriesAdapter(
-    internal var context: Context,
-    internal var categoriesList: List<CategoryModel>
+    internal var context: Context, internal var categoriesList: List<CategoryModel>
 ) : RecyclerView.Adapter<NewCategoriesAdapter.NewViewHolder>() {
-    inner class NewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var categoryName: TextView? = null
+    inner class NewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
 
+        var categoryName: TextView? = null
         var categoryImage: ImageView? = null
+        private var listener: IRecyclerItemClickListener? = null
 
         init {
             categoryName = itemView.text_view_category as TextView
             categoryImage = itemView.image_view_category as ImageView
+            itemView.setOnClickListener(this)
+        }
+
+        fun setListener(listener: IRecyclerItemClickListener) {
+            this.listener = listener
+        }
+
+        override fun onClick(p0: View?) {
+            listener!!.onItemClick(p0!!, adapterPosition)
         }
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): NewCategoriesAdapter.NewViewHolder {
         return NewViewHolder(
-            LayoutInflater.from(context)
-                .inflate(R.layout.layout_category_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.layout_category_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(
-        holder: NewCategoriesAdapter.NewViewHolder,
-        position: Int
+        holder: NewCategoriesAdapter.NewViewHolder, position: Int
     ) {
-        Glide.with(context).load(categoriesList.get(position).image)
-            .into(holder.categoryImage!!)
-        holder.categoryName!!.text = categoriesList.get(position).name
+        Glide.with(context).load(categoriesList[position].image).into(holder.categoryImage!!)
+        holder.categoryName!!.text = categoriesList[position].name
+
+        //Event
+        holder.setListener(object : IRecyclerItemClickListener {
+            override fun onItemClick(view: View, pos: Int) {
+                Common.category_selected = categoriesList[pos]
+                EventBus.getDefault().postSticky(CategoryClick(true, categoriesList[pos]))
+            }
+
+        })
     }
 
     override fun getItemCount(): Int {

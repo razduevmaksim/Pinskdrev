@@ -9,7 +9,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.maksapp.pinskdrev.EventBus.CategoryClick
 import com.maksapp.pinskdrev.databinding.ActivityMainBinding
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userRef: DatabaseReference
@@ -42,5 +46,24 @@ class MainActivity : AppCompatActivity() {
 
     fun init() {
         userRef = FirebaseDatabase.getInstance().reference
+    }
+
+    //Event Bus
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        EventBus.getDefault().unregister(this)
+        super.onPause()
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onCategorySelected(event: CategoryClick) {
+        if (event.isSuccess) {
+            //Toast.makeText(context, "Click to " +event.category.name, Toast.LENGTH_SHORT ).show()
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_catalog_to_navigation_product)
+        }
     }
 }

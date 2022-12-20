@@ -1,34 +1,26 @@
 package com.maksapp.pinskdrev.ui.catalog
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.asksira.loopingviewpager.LoopingViewPager
 import com.maksapp.pinskdrev.R
-import com.maksapp.pinskdrev.adapter.NewBestDealsAdapter
 import com.maksapp.pinskdrev.adapter.NewCategoriesAdapter
 import com.maksapp.pinskdrev.common.Common
 import com.maksapp.pinskdrev.common.SpacesItemDecorations
 import com.maksapp.pinskdrev.databinding.FragmentCatalogBinding
 import kotlinx.android.synthetic.main.fragment_catalog.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class CatalogFragment : Fragment() {
 
     private var _binding: FragmentCatalogBinding? = null
     var recyclerView: RecyclerView? = null
-    private lateinit var dialog: AlertDialog
     private lateinit var layoutAnimationController: LayoutAnimationController
     private var adapter: NewCategoriesAdapter? = null
 
@@ -37,23 +29,20 @@ class CatalogFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val catalogViewModel =
-            ViewModelProvider(this).get(CatalogViewModel::class.java)
+        val catalogViewModel = ViewModelProvider(this)[CatalogViewModel::class.java]
 
         _binding = FragmentCatalogBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         initViews(root)
 
-        catalogViewModel.getCategoryList().observe(viewLifecycleOwner, Observer {
+        catalogViewModel.getCategoryList().observe(viewLifecycleOwner) {
             adapter = NewCategoriesAdapter(requireContext(), it)
             recyclerView!!.adapter = adapter
             recyclerView!!.layoutAnimation = layoutAnimationController
-        })
+        }
         return root
     }
 
