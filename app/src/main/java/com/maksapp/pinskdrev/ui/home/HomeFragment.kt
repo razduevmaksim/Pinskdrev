@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,6 +32,8 @@ class HomeFragment : Fragment() {
     var recyclerView: RecyclerView? = null
     var viewPager: LoopingViewPager? = null
 
+    var layoutAnimationController: LayoutAnimationController? = null
+
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -49,6 +54,7 @@ class HomeFragment : Fragment() {
             val listData = it
             val adapter = NewPopularCategoriesAdapter(requireContext(), listData)
             recyclerView!!.adapter = adapter
+            recyclerView!!.layoutAnimation = layoutAnimationController
         })
         homeViewModel.bestDealList.observe(viewLifecycleOwner, Observer {
             val adapter = NewBestDealsAdapter(requireContext(), it, false)
@@ -63,6 +69,7 @@ class HomeFragment : Fragment() {
         recyclerView!!.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         viewPager = root.looping_view_pager as LoopingViewPager
+        layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_item_from_left)
     }
 
     override fun onResume() {
