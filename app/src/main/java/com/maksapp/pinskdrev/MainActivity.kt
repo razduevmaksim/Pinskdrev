@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.maksapp.pinskdrev.EventBus.CategoryClick
+import com.maksapp.pinskdrev.EventBus.ProductClick
 import com.maksapp.pinskdrev.databinding.ActivityMainBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -75,4 +76,13 @@ class MainActivity : AppCompatActivity() {
             findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_catalog_to_navigation_product)
         }
     }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onProductSelected(event: ProductClick) {
+        if (event.isSuccess) {
+            //Toast.makeText(context, "Click to " +event.category.name, Toast.LENGTH_SHORT ).show()
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_product_to_detailFragment)
+        }
+    }
+
 }
