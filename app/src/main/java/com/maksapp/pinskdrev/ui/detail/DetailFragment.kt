@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.databinding.FragmentDetailBinding
 import com.maksapp.pinskdrev.model.ProductModel
+import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import kotlinx.android.synthetic.main.fragment_product.view.*
 
@@ -48,7 +49,7 @@ class DetailFragment : Fragment() {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         initView(root)
-
+        changeNumber()
         detailViewModel.getMutableDetailModelLiveData().observe(viewLifecycleOwner, Observer {
             displayInfo(it)
         })
@@ -72,6 +73,23 @@ class DetailFragment : Fragment() {
         buttonMinus = root.button_minus as Button
         buttonPlus = root.button_plus as Button
         countProducts = root.count_details as TextView
+    }
+
+    fun changeNumber() {
+        buttonMinus!!.setOnClickListener() {
+            if (countProducts!!.text.toString().toInt() <= 0) {
+                countProducts!!.text = (0).toString()
+            } else {
+                countProducts!!.text = (countProducts!!.text.toString().toInt() - 1).toString()
+            }
+        }
+        buttonPlus!!.setOnClickListener() {
+            if (countProducts!!.text.toString().toInt() >= 100) {
+                countProducts!!.text = (100).toString()
+            } else {
+                countProducts!!.text = (countProducts!!.text.toString().toInt() + 1).toString()
+            }
+        }
     }
 
     override fun onDestroyView() {
