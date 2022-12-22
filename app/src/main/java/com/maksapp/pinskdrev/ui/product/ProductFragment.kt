@@ -3,6 +3,7 @@ package com.maksapp.pinskdrev.ui.product
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.adapter.NewProductAdapter
 import com.maksapp.pinskdrev.databinding.FragmentProductBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_product.view.*
 
 class ProductFragment : Fragment() {
@@ -35,6 +37,8 @@ class ProductFragment : Fragment() {
         _binding = FragmentProductBinding.inflate(inflater, container, false)
         val root: View = binding.root
         initView(root)
+
+        requireActivity().nav_view.visibility = GONE
 
         productViewModel.getMutableProductModelLiveData().observe(viewLifecycleOwner) {
             adapter = NewProductAdapter(requireContext(), it)

@@ -1,12 +1,12 @@
 package com.maksapp.pinskdrev
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.maksapp.pinskdrev.EventBus.CategoryClick
@@ -14,6 +14,7 @@ import com.maksapp.pinskdrev.databinding.ActivityMainBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userRef: DatabaseReference
@@ -41,11 +42,15 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        supportActionBar?.hide()
     }
 
     fun init() {
         userRef = FirebaseDatabase.getInstance().reference
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     //Event Bus

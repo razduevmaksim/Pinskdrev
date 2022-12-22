@@ -30,7 +30,7 @@
                 android:id="@+id/recycler_view_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp" />
+                android:padding="8dp"/>
         </LinearLayout>
 
         <LinearLayout

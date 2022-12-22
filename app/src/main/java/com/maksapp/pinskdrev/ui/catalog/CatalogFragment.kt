@@ -15,6 +15,7 @@ import com.maksapp.pinskdrev.adapter.NewCategoriesAdapter
 import com.maksapp.pinskdrev.common.Common
 import com.maksapp.pinskdrev.common.SpacesItemDecorations
 import com.maksapp.pinskdrev.databinding.FragmentCatalogBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_catalog.view.*
 
 class CatalogFragment : Fragment() {
@@ -37,6 +38,8 @@ class CatalogFragment : Fragment() {
         val root: View = binding.root
 
         initViews(root)
+
+        requireActivity().nav_view.visibility = View.VISIBLE
 
         catalogViewModel.getCategoryList().observe(viewLifecycleOwner) {
             adapter = NewCategoriesAdapter(requireContext(), it)
