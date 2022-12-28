@@ -11,7 +11,7 @@ class ProductViewModel : ViewModel() {
     fun getMutableProductModelLiveData(): MutableLiveData<List<ProductModel>> {
         if (mutableProductModelListData == null)
             mutableProductModelListData = MutableLiveData()
-        mutableProductModelListData!!.value = Common.category_selected!!.foods
+        mutableProductModelListData!!.value = Common.category_selected!!.products
         return mutableProductModelListData!!
     }
 }

@@ -1,15 +1,15 @@
 package com.maksapp.pinskdrev.model
 
 class PopularCategoryModel {
-    private var foodId: String? = null
-    private var menuId: String? = null
+    private var productId: String? = null
+    private var catalogId: String? = null
     var name: String? = null
     var image: String? = null
 
     constructor()
-    constructor(foodId: String?, menuId: String?, name: String?, image: String?) {
-        this.foodId = foodId
-        this.menuId = menuId
+    constructor(productId: String?, catalogId: String?, name: String?, image: String?) {
+        this.productId = productId
+        this.catalogId = catalogId
         this.name = name
         this.image = image
     }

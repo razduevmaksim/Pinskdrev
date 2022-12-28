@@ -43,7 +43,7 @@ class CatalogViewModel : ViewModel(), ICategoryCallback {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (itemSnapshot in snapshot.children) {
                     val model = itemSnapshot.getValue(CategoryModel::class.java)
-                    model!!.menuId = itemSnapshot.key
+                    model!!.catalogId = itemSnapshot.key
                     tempList.add(model)
                 }
                 categoryCallbackListener.onCategorySuccess(tempList)

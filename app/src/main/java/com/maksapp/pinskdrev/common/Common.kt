@@ -4,7 +4,7 @@ import com.maksapp.pinskdrev.model.CategoryModel
 import com.maksapp.pinskdrev.model.ProductModel
 
 object Common {
-    var food_selected: ProductModel? = null
+    var product_selected: ProductModel? = null
     var category_selected: CategoryModel? = null
     const val CATEGORY_REF: String = "Category"
     const val FULL_WIDTH_COLUMN: Int = 1

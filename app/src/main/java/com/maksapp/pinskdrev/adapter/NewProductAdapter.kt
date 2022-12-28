@@ -26,16 +26,12 @@ class NewProductAdapter(
         var productName: TextView? = null
         var productPrice: TextView? = null
         var productImage: ImageView? = null
-        private var productImageFavorite: ImageView? = null
-        private var productImageShoppingCart: ImageView? = null
         private var listener: IRecyclerItemClickListener? = null
 
         init {
             productName = itemView.text_view_product_name as TextView
             productPrice = itemView.text_view_product_price as TextView
             productImage = itemView.image_view_product as ImageView
-            productImageFavorite = itemView.image_view_favorite as ImageView
-            productImageShoppingCart = itemView.image_view_shopping_cart as ImageView
             itemView.setOnClickListener(this)
 
         }
@@ -66,7 +62,7 @@ class NewProductAdapter(
         //Event
         holder.setListener(object : IRecyclerItemClickListener {
             override fun onItemClick(view: View, pos: Int) {
-                Common.food_selected = productList[pos]
+                Common.product_selected = productList[pos]
                 EventBus.getDefault().postSticky(ProductClick(true, productList[pos]))
             }
 

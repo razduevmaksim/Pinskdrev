@@ -11,7 +11,7 @@ class DetailViewModel : ViewModel() {
     fun getMutableDetailModelLiveData(): MutableLiveData<ProductModel> {
         if (mutableDetailModelListData == null)
             mutableDetailModelListData = MutableLiveData()
-        mutableDetailModelListData!!.value = Common.food_selected
+        mutableDetailModelListData!!.value = Common.product_selected
         return mutableDetailModelListData!!
     }
 }
