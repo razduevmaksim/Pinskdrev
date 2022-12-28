@@ -24,13 +24,11 @@ class NewProductAdapter(
         View.OnClickListener {
 
         var productName: TextView? = null
-        var productPrice: TextView? = null
         var productImage: ImageView? = null
         private var listener: IRecyclerItemClickListener? = null
 
         init {
             productName = itemView.text_view_product_name as TextView
-            productPrice = itemView.text_view_product_price as TextView
             productImage = itemView.image_view_product as ImageView
             itemView.setOnClickListener(this)
 
@@ -57,7 +55,6 @@ class NewProductAdapter(
     ) {
         Glide.with(context).load(productList[position].image).into(holder.productImage!!)
         holder.productName!!.text = productList[position].name
-        holder.productPrice!!.text = productList[position].price.toString()
 
         //Event
         holder.setListener(object : IRecyclerItemClickListener {

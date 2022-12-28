@@ -15,9 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.9"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -36,14 +36,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.6"
+            android:padding="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="10dp"
                 android:text="Best Deals"
                 android:textSize="24dp"
                 android:textStyle="bold" />
@@ -53,8 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:paddingTop="50dp"
-                android:paddingBottom="50dp"
+                android:layout_marginBottom="20dp"
                 app:autoScroll="true"
                 app:isInfinite="false"
                 app:scrollInterval="5000"
