@@ -120,9 +120,9 @@ class ViewPagerActivity : AppCompatActivity() {
             i++
         }
         if (index == onboardingAdapter.itemCount - 1) {
-            buttonOnboardingAction.text = "Start"
+            buttonOnboardingAction.text = "Вперед"
         } else {
-            buttonOnboardingAction.text = "Next"
+            buttonOnboardingAction.text = "Вперед"
         }
     }
 
