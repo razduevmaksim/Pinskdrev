@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    android:layout_margin="20dp"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp"
-    android:layout_margin="20dp">
+    app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,8 +25,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/light_rose"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:weightSum="10">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -52,31 +51,6 @@
                     android:textSize="20dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/image_view_favorite"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_baseline_favorite_border_24"
-                    app:tint="@color/white" />
-
-                <ImageView
-                    android:id="@+id/image_view_shopping_cart"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_baseline_shopping_cart_24"
-                    app:tint="@color/white" />
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
