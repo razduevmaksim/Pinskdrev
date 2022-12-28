@@ -16,10 +16,8 @@ class NewBestDealsAdapter(
 ) : LoopingPagerAdapter<BestDealModel>(itemList, isInfinite) {
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
         val imageView = convertView.findViewById<ImageView>(R.id.image_view_best_deal)
-        val textView = convertView.findViewById<TextView>(R.id.text_view_best_deal)
 
         Glide.with(context).load(itemList!![listPosition].image).into(imageView)
-        textView.text = itemList!![listPosition].name
     }
 
     override fun inflateView(viewType: Int, container: ViewGroup, listPosition: Int): View {
