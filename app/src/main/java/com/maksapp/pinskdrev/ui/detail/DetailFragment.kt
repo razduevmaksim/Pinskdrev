@@ -6,21 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.andremion.counterfab.CounterFab
 import com.bumptech.glide.Glide
-import com.maksapp.pinskdrev.R
+import com.maksapp.pinskdrev.common.Common
+import com.maksapp.pinskdrev.database.CartItem
 import com.maksapp.pinskdrev.databinding.FragmentDetailBinding
 import com.maksapp.pinskdrev.model.ProductModel
-import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.view.*
-import kotlinx.android.synthetic.main.fragment_product.view.*
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
@@ -39,17 +33,16 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val detailViewModel =
-            ViewModelProvider(this).get(DetailViewModel::class.java)
+        val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
 
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         initView(root)
         changeNumber()
+        addInformationToDatabase()
         detailViewModel.getMutableDetailModelLiveData().observe(viewLifecycleOwner, Observer {
             displayInfo(it)
         })
@@ -90,6 +83,75 @@ class DetailFragment : Fragment() {
                 countProducts!!.text = (countProducts!!.text.toString().toInt() + 1).toString()
             }
         }
+    }
+
+    //добавление данных в room
+    private fun addInformationToDatabase() {
+        val viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        var validationInValidation = true
+
+        //события при нажатии на кнопку добавления
+        btnCart!!.setOnClickListener {
+            validationInValidation = true
+            //инициализация БД
+            viewModel.initDatabase()
+            //получение всех данных из room
+            viewModel.getAll().observe(viewLifecycleOwner) { listProducts ->
+                if (validationInValidation) {
+                    var validationAccuracy = true
+                    listProducts.forEach { itemList ->
+                        //проверка на добавление точки в соответствии с точностью трекинга геолокации
+                        var productNameInDatabase = itemList.productName.toString()
+
+
+                        if (productNameInDatabase == productName!!.text) {
+                            validationAccuracy = false
+                            Toast.makeText(
+                                activity, "Товар уже был добавлен в корзину", Toast.LENGTH_SHORT
+                            ).show()
+                            validationInValidation = false
+                            return@observe
+                        }
+                    }
+                    if (validationAccuracy) {
+                        //добавление данных в room
+                        var productNameInDatabase = Common.product_selected!!.name.toString()
+                        var productPriceInDatabase = Common.product_selected!!.price.toString()
+                        var productImageInDatabase = Common.product_selected!!.image
+                        var productQuantityInDatabase = countProducts!!.text.toString()
+                        insertToDatabase(
+                            productNameInDatabase,
+                            productImageInDatabase,
+                            productPriceInDatabase,
+                            productQuantityInDatabase
+                        )
+                        validationInValidation = false
+
+                        return@observe
+                    }
+                }
+            }
+        }
+    }
+
+    //добавление данных в room
+    private fun insertToDatabase(
+        productName: String, productImage: String?, productPrice: String, productQuantity: String
+    ) {
+        val viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
+        //инициализация БД
+        viewModel.initDatabase()
+
+        viewModel.insert(
+            CartItem(
+                productName = productName.toString(),
+                productImage = productImage,
+                productPrice = productPrice.toString(),
+                productQuantity = productQuantity.toString()
+            )
+        ) {}
+        Toast.makeText(getActivity(), "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
