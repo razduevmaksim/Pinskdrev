@@ -1,6 +1,7 @@
 package com.maksapp.pinskdrev
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.maksapp.pinskdrev.EventBus.CategoryClick
+import com.maksapp.pinskdrev.EventBus.PopularCategoryClick
 import com.maksapp.pinskdrev.EventBus.ProductClick
 import com.maksapp.pinskdrev.databinding.ActivityMainBinding
 import org.greenrobot.eventbus.EventBus
@@ -46,7 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar!!.setCustomView(R.layout.layout_action_bar)
-
     }
 
     fun init() {
@@ -82,6 +83,14 @@ class MainActivity : AppCompatActivity() {
         if (event.isSuccess) {
             //Toast.makeText(context, "Click to " +event.category.name, Toast.LENGTH_SHORT ).show()
             findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_product_to_detailFragment)
+        }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onPopularCategorySelected(event: PopularCategoryClick) {
+        if (event.isSuccess) {
+            //Toast.makeText(context, "Click to " +event.category.name, Toast.LENGTH_SHORT ).show()
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_home_to_navigation_product)
         }
     }
 

@@ -22,7 +22,11 @@
         android:id="@+id/navigation_home"
         android:name="com.maksapp.pinskdrev.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_product"
+            app:destination="@id/navigation_product" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_orders"
         android:name="com.maksapp.pinskdrev.ui.orders.OrdersFragment"
@@ -39,6 +43,9 @@
         <action
             android:id="@+id/action_navigation_product_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_navigation_product_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

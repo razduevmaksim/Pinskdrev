@@ -11,10 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.asksira.loopingviewpager.LoopingViewPager
+import com.maksapp.pinskdrev.MainActivity
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.adapter.NewBestDealsAdapter
 import com.maksapp.pinskdrev.adapter.NewPopularCategoriesAdapter
 import com.maksapp.pinskdrev.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
@@ -65,6 +68,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewPager!!.resumeAutoScroll()
+        requireActivity().nav_view.visibility = View.VISIBLE
     }
 
     override fun onPause() {
