@@ -59,18 +59,18 @@ class ViewPagerActivity : AppCompatActivity() {
             ArrayList<OnboardingItem>().toMutableList()
 
         val item1 = OnboardingItem()
-        item1.title = "Title Item 1"
-        item1.description = "Description Item 1"
+        item1.title = "Большой выбор"
+        item1.description = "Огромное количество предметов на ваш вкус"
         item1.image = R.drawable.view_pager_1
 
         val item2 = OnboardingItem()
-        item2.title = "Title Item 2"
-        item2.description = "Description Item 2"
+        item2.title = "Удобная система навигации"
+        item2.description = "Мы заботимся о вашем времени"
         item2.image = R.drawable.view_pager_2
 
         val item3 = OnboardingItem()
-        item3.title = "Title Item 3"
-        item3.description = "Description Item 3"
+        item3.title = "Сделано с любовью"
+        item3.description = "Мы ценим и уважаем наших клиентов"
         item3.image = R.drawable.view_pager_3
 
         onboardingItems.add(item1)
