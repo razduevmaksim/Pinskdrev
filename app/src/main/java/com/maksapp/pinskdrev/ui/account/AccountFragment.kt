@@ -1,5 +1,6 @@
 package com.maksapp.pinskdrev.ui.account
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.databinding.FragmentAccountBinding
+
 
 class AccountFragment : Fragment() {
 
@@ -29,11 +32,28 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textAccount
-        accountViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.buttonUserInformation.setOnClickListener{
+            showEditTextDialog()
         }
         return root
+    }
+
+    fun showEditTextDialog(){
+        val builder = AlertDialog.Builder(context)
+        val inflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.layout_alert_dialog, null)
+
+        with(builder){
+            setTitle("Анкета")
+            setPositiveButton("Сохранить"){dialog, which ->
+                Toast.makeText(context,"Данные сохранены", Toast.LENGTH_SHORT).show()
+            }
+            setNegativeButton("Отмена"){dialog, which ->
+                Toast.makeText(context,"Данные не сохранены", Toast.LENGTH_SHORT).show()
+            }
+            setView(dialogLayout)
+            show()
+        }
     }
 
     override fun onDestroyView() {
