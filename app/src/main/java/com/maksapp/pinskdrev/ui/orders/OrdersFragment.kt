@@ -3,15 +3,19 @@ package com.maksapp.pinskdrev.ui.orders
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.adapter.NewOrdersAdapter
 import com.maksapp.pinskdrev.databinding.FragmentOrdersBinding
+import com.maksapp.pinskdrev.userdata.User
 
 class OrdersFragment : Fragment() {
-
+    private lateinit var database: DatabaseReference
     private var _binding: FragmentOrdersBinding? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewOrdersAdapter
@@ -35,6 +39,19 @@ class OrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+
+        binding.buttonCheckout.setOnClickListener{
+            val firstName = "Maksim"
+            val lastName = "Jonson"
+
+            database = FirebaseDatabase.getInstance().getReference("Users")
+            val user = User(firstName, lastName)
+            database.child(lastName).setValue(user).addOnSuccessListener {
+                Toast.makeText(context,"Заказ оформлен", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                Toast.makeText(context,"Заказ не оформлен", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     @Deprecated(
