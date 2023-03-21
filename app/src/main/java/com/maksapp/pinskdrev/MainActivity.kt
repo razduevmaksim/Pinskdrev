@@ -19,6 +19,12 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+const val USER_INFORMATION_PREFERENCES = "GEOLOCATION_PREFERENCES"
+var USER_INFORMATION_FIRST_NAME = "USER_INFORMATION_FIRST_NAME"
+var USER_INFORMATION_LAST_NAME = "USER_INFORMATION_LAST_NAME"
+var USER_INFORMATION_EMAIL = "USER_INFORMATION_EMAIL"
+var USER_INFORMATION_PHONE = "USER_INFORMATION_PHONE"
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userRef: DatabaseReference

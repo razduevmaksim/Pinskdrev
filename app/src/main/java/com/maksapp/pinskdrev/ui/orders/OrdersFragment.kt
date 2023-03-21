@@ -1,6 +1,8 @@
 package com.maksapp.pinskdrev.ui.orders
 
 import android.app.AlertDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -9,16 +11,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.maksapp.pinskdrev.R
+import com.maksapp.pinskdrev.*
 import com.maksapp.pinskdrev.adapter.NewOrdersAdapter
 import com.maksapp.pinskdrev.databinding.FragmentOrdersBinding
 import com.maksapp.pinskdrev.userdata.User
 
 class OrdersFragment : Fragment() {
+    private lateinit var preferences: SharedPreferences
     private lateinit var database: DatabaseReference
     private var _binding: FragmentOrdersBinding? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewOrdersAdapter
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -36,20 +40,25 @@ class OrdersFragment : Fragment() {
 
         return root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
 
-        binding.buttonCheckout.setOnClickListener{
-            val firstName = "Maksim"
-            val lastName = "Jonson"
+        preferences = this.requireActivity().getSharedPreferences(USER_INFORMATION_PREFERENCES, Context.MODE_PRIVATE)
+
+        binding.buttonCheckout.setOnClickListener {
+            val userFirstName = preferences.getString(USER_INFORMATION_FIRST_NAME, "")
+            val userLastName = preferences.getString(USER_INFORMATION_LAST_NAME, "")
+            val userEmail = preferences.getString(USER_INFORMATION_EMAIL, "")
+            val userPhone = preferences.getString(USER_INFORMATION_PHONE, "")
 
             database = FirebaseDatabase.getInstance().getReference("Users")
-            val user = User(firstName, lastName)
-            database.child(lastName).setValue(user).addOnSuccessListener {
-                Toast.makeText(context,"Заказ оформлен", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
-                Toast.makeText(context,"Заказ не оформлен", Toast.LENGTH_SHORT).show()
+            val user = User(userFirstName, userLastName, userEmail, userPhone)
+            database.child(userFirstName+userLastName).setValue(user).addOnSuccessListener {
+                Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Заказ не оформлен", Toast.LENGTH_SHORT).show()
             }
         }
     }
