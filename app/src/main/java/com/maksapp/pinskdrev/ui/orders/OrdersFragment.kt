@@ -15,6 +15,7 @@ import com.maksapp.pinskdrev.*
 import com.maksapp.pinskdrev.adapter.NewOrdersAdapter
 import com.maksapp.pinskdrev.databinding.FragmentOrdersBinding
 import com.maksapp.pinskdrev.userdata.User
+import kotlinx.android.synthetic.main.layout_alert_dialog.view.*
 
 class OrdersFragment : Fragment() {
     private lateinit var preferences: SharedPreferences
@@ -45,21 +46,62 @@ class OrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
 
-        preferences = this.requireActivity().getSharedPreferences(USER_INFORMATION_PREFERENCES, Context.MODE_PRIVATE)
-
         binding.buttonCheckout.setOnClickListener {
+            preferences = this.requireActivity()
+                .getSharedPreferences(USER_INFORMATION_PREFERENCES, Context.MODE_PRIVATE)
             val userFirstName = preferences.getString(USER_INFORMATION_FIRST_NAME, "")
             val userLastName = preferences.getString(USER_INFORMATION_LAST_NAME, "")
             val userEmail = preferences.getString(USER_INFORMATION_EMAIL, "")
             val userPhone = preferences.getString(USER_INFORMATION_PHONE, "")
 
-            database = FirebaseDatabase.getInstance().getReference("Users")
-            val user = User(userFirstName, userLastName, userEmail, userPhone)
-            database.child(userFirstName+userLastName).setValue(user).addOnSuccessListener {
-                Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(context, "Заказ не оформлен", Toast.LENGTH_SHORT).show()
+            if (userFirstName!!.isEmpty() || userLastName!!.isEmpty() || userEmail!!.isEmpty() || userPhone!!.isEmpty()) {
+                Toast.makeText(context, "Заполните данные о себе", Toast.LENGTH_SHORT).show()
+                showEditTextDialog()
+            } else {
+                database = FirebaseDatabase.getInstance().getReference("Users")
+                val user = User(userFirstName, userLastName, userEmail, userPhone)
+                database.child(userFirstName + userLastName).setValue(user).addOnSuccessListener {
+                    Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(context, "Заказ не оформлен", Toast.LENGTH_SHORT).show()
+                }
             }
+        }
+    }
+
+    fun showEditTextDialog() {
+        val builder = AlertDialog.Builder(context)
+        val inflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.layout_alert_dialog, null)
+
+        with(builder) {
+            setTitle("Анкета")
+            setPositiveButton("Сохранить") { dialog, which ->
+                preferences =
+                    this.context.getSharedPreferences(
+                        USER_INFORMATION_PREFERENCES,
+                        Context.MODE_PRIVATE
+                    )
+
+                val userFirstName = dialogLayout.alert_dialog_edit_text_first_name.text.toString()
+                val userLastName = dialogLayout.alert_dialog_edit_text_last_name.text.toString()
+                val userEmail = dialogLayout.alert_dialog_edit_text_email.text.toString()
+                val userPhone = dialogLayout.alert_dialog_edit_text_number.text.toString()
+                //Передача данных в хранилище
+                val editor = preferences.edit()
+                editor.putString(USER_INFORMATION_FIRST_NAME, userFirstName)
+                editor.putString(USER_INFORMATION_LAST_NAME, userLastName)
+                editor.putString(USER_INFORMATION_EMAIL, userEmail)
+                editor.putString(USER_INFORMATION_PHONE, userPhone)
+                editor.apply()
+
+                Toast.makeText(context, "Данные сохранены", Toast.LENGTH_SHORT).show()
+            }
+            setNegativeButton("Отмена") { dialog, which ->
+                Toast.makeText(context, "Данные не сохранены", Toast.LENGTH_SHORT).show()
+            }
+            setView(dialogLayout)
+            show()
         }
     }
 
