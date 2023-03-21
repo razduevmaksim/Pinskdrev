@@ -8,7 +8,11 @@
         android:id="@+id/navigation_account"
         android:name="com.maksapp.pinskdrev.ui.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigation_account_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_catalog"
         android:name="com.maksapp.pinskdrev.ui.catalog.CatalogFragment"
@@ -31,7 +35,11 @@
         android:id="@+id/navigation_orders"
         android:name="com.maksapp.pinskdrev.ui.orders.OrdersFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_navigation_orders_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_product"
         android:name="com.maksapp.pinskdrev.ui.product.ProductFragment"
@@ -55,5 +63,17 @@
         <action
             android:id="@+id/action_detailFragment_to_navigation_product"
             app:destination="@id/navigation_product" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInformationFragment"
+        android:name="com.maksapp.pinskdrev.userdata.UserInformationFragment"
+        android:label="fragment_user_information"
+        tools:layout="@layout/fragment_user_information" >
+        <action
+            android:id="@+id/action_userInformationFragment_to_navigation_orders"
+            app:destination="@id/navigation_orders" />
+        <action
+            android:id="@+id/action_userInformationFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
 </navigation>
