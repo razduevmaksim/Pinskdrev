@@ -54,9 +54,21 @@ class UserInformationFragment : Fragment() {
         alert_dialog_edit_text_email.setText(userEmail)
         alert_dialog_edit_text_number.setText(userPhone)
 
+        var validationFirstName = false
+        var validationLastName = false
+        var validationEmail = false
+        var validationNumber = false
+
+        val userValidation = preferences.getString(USER_INFORMATION_VALIDATION, "")
+
+        if (userValidation == "true") {
+            validationFirstName = true
+            validationLastName = true
+            validationEmail = true
+            validationNumber = true
+        }
 
         //Валидация FirstName
-        var validationFirstName = false
 
         alert_dialog_edit_text_first_name.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -68,7 +80,7 @@ class UserInformationFragment : Fragment() {
                     if (alert_dialog_edit_text_first_name.text.toString().length >= 3) {
                         true
                     } else {
-                        alert_dialog_edit_text_first_name.error = "Invalid Name"
+                        alert_dialog_edit_text_first_name.error = "Invalid First Name"
                         false
                     }
             }
@@ -79,7 +91,6 @@ class UserInformationFragment : Fragment() {
         })
 
         //Валидация LastName
-        var validationLastName = false
 
         alert_dialog_edit_text_last_name.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -91,7 +102,7 @@ class UserInformationFragment : Fragment() {
                     if (alert_dialog_edit_text_last_name.text.toString().length >= 3) {
                         true
                     } else {
-                        alert_dialog_edit_text_last_name.error = "Invalid Name"
+                        alert_dialog_edit_text_last_name.error = "Invalid Last Name"
                         false
                     }
             }
@@ -103,7 +114,6 @@ class UserInformationFragment : Fragment() {
 
         //Валидация MobileNumber
 
-        var validationNumber = false
         alert_dialog_edit_text_number.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -113,7 +123,7 @@ class UserInformationFragment : Fragment() {
                 validationNumber = if (alert_dialog_edit_text_number.text.toString().length > 6) {
                     true
                 } else {
-                    alert_dialog_edit_text_number.error = "Invalid Number"
+                    alert_dialog_edit_text_number.error = "Invalid Phone"
                     false
                 }
             }
@@ -123,7 +133,6 @@ class UserInformationFragment : Fragment() {
         })
 
         //Валидация Email
-        var validationEmail = false
 
         alert_dialog_edit_text_email.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -147,6 +156,8 @@ class UserInformationFragment : Fragment() {
             }
         })
 
+
+
         alert_dialog_button_save.setOnClickListener {
             if (validationFirstName && validationLastName && validationEmail && validationNumber) {
                 preferences = this.requireContext().getSharedPreferences(
@@ -164,12 +175,14 @@ class UserInformationFragment : Fragment() {
                 editor.putString(USER_INFORMATION_LAST_NAME, userLastName)
                 editor.putString(USER_INFORMATION_EMAIL, userEmail)
                 editor.putString(USER_INFORMATION_PHONE, userPhone)
+                editor.putString(USER_INFORMATION_VALIDATION, "true")
                 editor.apply()
 
                 Toast.makeText(context, "Данные сохранены", Toast.LENGTH_SHORT).show()
 
 
             } else {
+
                 Toast.makeText(context, "Заполните все данные", Toast.LENGTH_SHORT).show()
             }
         }
