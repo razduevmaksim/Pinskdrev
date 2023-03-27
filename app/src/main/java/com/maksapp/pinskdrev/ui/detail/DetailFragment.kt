@@ -1,5 +1,6 @@
 package com.maksapp.pinskdrev.ui.detail
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.Observer
 import com.andremion.counterfab.CounterFab
 import com.bumptech.glide.Glide
 import com.maksapp.pinskdrev.common.Common
@@ -35,7 +35,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        val detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
 
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
@@ -43,9 +43,9 @@ class DetailFragment : Fragment() {
         initView(root)
         changeNumber()
         addInformationToDatabase()
-        detailViewModel.getMutableDetailModelLiveData().observe(viewLifecycleOwner, Observer {
+        detailViewModel.getMutableDetailModelLiveData().observe(viewLifecycleOwner) {
             displayInfo(it)
-        })
+        }
 
         return root
     }
@@ -53,7 +53,7 @@ class DetailFragment : Fragment() {
     private fun displayInfo(it: ProductModel?) {
         Glide.with(requireContext()).load(it!!.image).into(productImageView!!)
         productName!!.text = StringBuilder(it.name!!)
-        productPrice!!.text = StringBuilder(it.price!!.toString())
+        productPrice!!.text = StringBuilder(it.price.toString())
         productDescription!!.text = StringBuilder(it.description!!)
     }
 
@@ -68,15 +68,16 @@ class DetailFragment : Fragment() {
         countProducts = root.count_details as TextView
     }
 
-    fun changeNumber() {
-        buttonMinus!!.setOnClickListener() {
+    @SuppressLint("SetTextI18n")
+    private fun changeNumber() {
+        buttonMinus!!.setOnClickListener {
             if (countProducts!!.text.toString().toInt() <= 0) {
                 countProducts!!.text = (0).toString()
             } else {
                 countProducts!!.text = (countProducts!!.text.toString().toInt() - 1).toString()
             }
         }
-        buttonPlus!!.setOnClickListener() {
+        buttonPlus!!.setOnClickListener {
             if (countProducts!!.text.toString().toInt() >= 100) {
                 countProducts!!.text = (100).toString()
             } else {
@@ -87,7 +88,7 @@ class DetailFragment : Fragment() {
 
     //добавление данных в room
     private fun addInformationToDatabase() {
-        val viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         var validationInValidation = true
 
         //события при нажатии на кнопку добавления
@@ -100,7 +101,7 @@ class DetailFragment : Fragment() {
                 if (validationInValidation) {
                     var validationAccuracy = true
                     listProducts.forEach { itemList ->
-                        var productNameInDatabase = itemList.productName.toString()
+                        val productNameInDatabase = itemList.productName.toString()
 
 
                         if (productNameInDatabase == productName!!.text) {
@@ -114,11 +115,11 @@ class DetailFragment : Fragment() {
                     }
                     if (validationAccuracy) {
                         //добавление данных в room
-                        var productIdInDatabase = Common.product_selected!!.id.toString()
-                        var productNameInDatabase = Common.product_selected!!.name.toString()
-                        var productPriceInDatabase = Common.product_selected!!.price.toString()
-                        var productImageInDatabase = Common.product_selected!!.image
-                        var productQuantityInDatabase = countProducts!!.text.toString()
+                        val productIdInDatabase = Common.product_selected!!.id.toString()
+                        val productNameInDatabase = Common.product_selected!!.name.toString()
+                        val productPriceInDatabase = Common.product_selected!!.price.toString()
+                        val productImageInDatabase = Common.product_selected!!.image
+                        val productQuantityInDatabase = countProducts!!.text.toString()
                         insertToDatabase(
                             productIdInDatabase,
                             productNameInDatabase,
@@ -137,9 +138,13 @@ class DetailFragment : Fragment() {
 
     //добавление данных в room
     private fun insertToDatabase(
-        productId:String, productName: String, productImage: String?, productPrice: String, productQuantity: String
+        productId: String,
+        productName: String,
+        productImage: String?,
+        productPrice: String,
+        productQuantity: String
     ) {
-        val viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
         //инициализация БД
         viewModel.initDatabase()
@@ -147,13 +152,13 @@ class DetailFragment : Fragment() {
         viewModel.insert(
             CartItem(
                 productIdDefault = productId,
-                productName = productName.toString(),
+                productName = productName,
                 productImage = productImage,
-                productPrice = productPrice.toString(),
-                productQuantity = productQuantity.toString()
+                productPrice = productPrice,
+                productQuantity = productQuantity
             )
         ) {}
-        Toast.makeText(getActivity(), "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

@@ -1,10 +1,8 @@
 package com.maksapp.pinskdrev.database
 
-import android.widget.ImageView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "Cart")
 class CartItem(

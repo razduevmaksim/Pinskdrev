@@ -12,11 +12,9 @@ class CartRealisation(private val cartDao: CartDao) : CartRepository {
         onSuccess()
     }
 
-
     override suspend fun delete(cartItem: CartItem, onSuccess: () -> Unit) {
 
     }
-
 
     override suspend fun deleteAll() {
         cartDao.deleteAll()

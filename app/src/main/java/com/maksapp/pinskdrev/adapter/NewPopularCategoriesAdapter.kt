@@ -13,7 +13,6 @@ import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.callback.IRecyclerItemClickListener
 import com.maksapp.pinskdrev.common.Common
 import com.maksapp.pinskdrev.model.PopularCategoryModel
-import kotlinx.android.synthetic.main.layout_category_item.view.*
 import kotlinx.android.synthetic.main.layout_popular_categories_item.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -28,7 +27,6 @@ class NewPopularCategoriesAdapter(
         var categoryImage: ImageView? = null
         private var listener: IRecyclerItemClickListener? = null
 
-
         fun setListener(listener: IRecyclerItemClickListener) {
             this.listener = listener
         }
@@ -36,6 +34,7 @@ class NewPopularCategoriesAdapter(
         override fun onClick(p0: View?) {
             listener!!.onItemClick(p0!!, adapterPosition)
         }
+
         init {
             categoryName = itemView.text_view_category_name as TextView
             categoryImage = itemView.category_image as ImageView
@@ -57,14 +56,13 @@ class NewPopularCategoriesAdapter(
         holder.setListener(object : IRecyclerItemClickListener {
             override fun onItemClick(view: View, pos: Int) {
                 Common.popular_category_selected = popularCategoryModels[pos]
-                EventBus.getDefault().postSticky(PopularCategoryClick(true, popularCategoryModels[pos]))
+                EventBus.getDefault()
+                    .postSticky(PopularCategoryClick(true, popularCategoryModels[pos]))
             }
-
         })
     }
 
     override fun getItemCount(): Int {
         return popularCategoryModels.size
-
     }
 }

@@ -40,7 +40,6 @@ class ViewPagerActivity : AppCompatActivity() {
                 super.onPageSelected(position)
                 setCurrentOnboardingIndicator(position)
             }
-
         })
 
         buttonOnboardingAction.setOnClickListener {

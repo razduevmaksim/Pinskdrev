@@ -1,7 +1,6 @@
 package com.maksapp.pinskdrev
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -25,8 +24,6 @@ var USER_INFORMATION_LAST_NAME = "USER_INFORMATION_LAST_NAME"
 var USER_INFORMATION_EMAIL = "USER_INFORMATION_EMAIL"
 var USER_INFORMATION_PHONE = "USER_INFORMATION_PHONE"
 var USER_INFORMATION_VALIDATION = "USER_INFORMATION_VALIDATION"
-
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userRef: DatabaseReference
@@ -101,5 +98,4 @@ class MainActivity : AppCompatActivity() {
             findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_home_to_navigation_product)
         }
     }
-
 }

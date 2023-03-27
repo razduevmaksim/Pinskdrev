@@ -23,8 +23,6 @@ class ProductFragment : Fragment() {
     var recyclerView: RecyclerView? = null
     private var layoutAnimationController: LayoutAnimationController? = null
     private var adapter: NewProductAdapter? = null
-    private var adapter2: NewProductAdapter? = null
-
 
     // This property is only valid between onCreateView and
     // onDestroyView.

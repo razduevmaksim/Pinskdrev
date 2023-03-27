@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maksapp.pinskdrev.R
 import kotlinx.android.synthetic.main.item_container_onboarding.view.*
 
-
 class OnboardingAdapter(private var onboardingItems: List<OnboardingItem>) :
     RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 

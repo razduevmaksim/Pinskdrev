@@ -52,7 +52,6 @@ class CatalogViewModel : ViewModel(), ICategoryCallback {
             override fun onCancelled(error: DatabaseError) {
                 categoryCallbackListener.onCategoryLoadFailed(error.message)
             }
-
         })
     }
 }

@@ -1,6 +1,5 @@
 package com.maksapp.pinskdrev.userdata
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
@@ -13,9 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.maksapp.pinskdrev.*
-import com.maksapp.pinskdrev.databinding.FragmentAccountBinding
 import com.maksapp.pinskdrev.databinding.FragmentUserInformationBinding
-import com.maksapp.pinskdrev.ui.account.AccountViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_user_information.*
 
@@ -28,14 +25,13 @@ class UserInformationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val viewModel = ViewModelProvider(this).get(UserInformationViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[UserInformationViewModel::class.java]
         requireActivity().nav_view.visibility = View.GONE
 
         _binding = FragmentUserInformationBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
 
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -164,25 +160,22 @@ class UserInformationFragment : Fragment() {
                     USER_INFORMATION_PREFERENCES, Context.MODE_PRIVATE
                 )
 
-                val userFirstName = alert_dialog_edit_text_first_name.text.toString()
-                val userLastName = alert_dialog_edit_text_last_name.text.toString()
-                val userEmail = alert_dialog_edit_text_email.text.toString()
-                val userPhone = alert_dialog_edit_text_number.text.toString()
+                val userFirstNameEditText = alert_dialog_edit_text_first_name.text.toString()
+                val userLastNameEditText = alert_dialog_edit_text_last_name.text.toString()
+                val userEmailEditText = alert_dialog_edit_text_email.text.toString()
+                val userPhoneEditText = alert_dialog_edit_text_number.text.toString()
 
                 //Передача данных в хранилище
                 val editor = preferences.edit()
-                editor.putString(USER_INFORMATION_FIRST_NAME, userFirstName)
-                editor.putString(USER_INFORMATION_LAST_NAME, userLastName)
-                editor.putString(USER_INFORMATION_EMAIL, userEmail)
-                editor.putString(USER_INFORMATION_PHONE, userPhone)
+                editor.putString(USER_INFORMATION_FIRST_NAME, userFirstNameEditText)
+                editor.putString(USER_INFORMATION_LAST_NAME, userLastNameEditText)
+                editor.putString(USER_INFORMATION_EMAIL, userEmailEditText)
+                editor.putString(USER_INFORMATION_PHONE, userPhoneEditText)
                 editor.putString(USER_INFORMATION_VALIDATION, "true")
                 editor.apply()
 
                 Toast.makeText(context, "Данные сохранены", Toast.LENGTH_SHORT).show()
-
-
             } else {
-
                 Toast.makeText(context, "Заполните все данные", Toast.LENGTH_SHORT).show()
             }
         }

@@ -61,7 +61,6 @@ class NewCategoriesAdapter(
                 Common.category_selected = categoriesList[pos]
                 EventBus.getDefault().postSticky(CategoryClick(true, categoriesList[pos]))
             }
-
         })
     }
 

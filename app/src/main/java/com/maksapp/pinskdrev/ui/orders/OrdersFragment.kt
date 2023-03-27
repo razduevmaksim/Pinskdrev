@@ -18,6 +18,7 @@ import com.maksapp.pinskdrev.databinding.FragmentOrdersBinding
 import com.maksapp.pinskdrev.userdata.User
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Suppress("DEPRECATION")
 class OrdersFragment : Fragment() {
     private lateinit var preferences: SharedPreferences
     private lateinit var database: DatabaseReference

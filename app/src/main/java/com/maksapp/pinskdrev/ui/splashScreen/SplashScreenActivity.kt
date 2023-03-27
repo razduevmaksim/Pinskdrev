@@ -1,5 +1,6 @@
 package com.maksapp.pinskdrev.ui.splashScreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.os.Handler
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.ui.viewPager.ViewPagerActivity
 
+@SuppressLint("CustomSplashScreen")
+@Suppress("DEPRECATION")
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var handler: Handler

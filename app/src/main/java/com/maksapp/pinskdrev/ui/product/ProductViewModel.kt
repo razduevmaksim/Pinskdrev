@@ -9,7 +9,6 @@ class ProductViewModel : ViewModel() {
     private var mutableProductModelListData: MutableLiveData<List<ProductModel>>? = null
     private var mutableProductModelListData2: MutableLiveData<List<ProductModel>>? = null
 
-
     fun getMutableProductModelLiveData(): MutableLiveData<List<ProductModel>> {
         if (Common.popular_category_selected != null) {
             mutableProductModelListData = null

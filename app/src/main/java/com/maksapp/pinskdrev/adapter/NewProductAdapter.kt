@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.maksapp.pinskdrev.EventBus.CategoryClick
 import com.maksapp.pinskdrev.EventBus.ProductClick
 import com.maksapp.pinskdrev.R
 import com.maksapp.pinskdrev.callback.IRecyclerItemClickListener
@@ -33,6 +32,7 @@ class NewProductAdapter(
             itemView.setOnClickListener(this)
 
         }
+
         fun setListener(listener: IRecyclerItemClickListener) {
             this.listener = listener
         }
@@ -62,7 +62,6 @@ class NewProductAdapter(
                 Common.product_selected = productList[pos]
                 EventBus.getDefault().postSticky(ProductClick(true, productList[pos]))
             }
-
         })
     }
 
