@@ -59,96 +59,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:orientation="vertical"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Рассрочка"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
-                    android:weightSum="5">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:padding="8dp"
-                        android:src="@drawable/icons8_money_tree_64" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="4"
-                        android:text="Переплата 0%"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
-                    android:weightSum="5">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:padding="8dp"
-                        android:src="@drawable/icons8_calendar_64" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="4"
-                        android:text="Можно оформить на 6, 10, 12, 24 и 36 месяцев"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
-
-                    android:weightSum="5">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:padding="8dp"
-                        android:src="@drawable/icons8_clock_64" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="4"
-                        android:text="Удобное оформление"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="440dp"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
@@ -232,7 +142,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="4"
-                        android:text="Выезд дизайнера и дизайн-проект бесплатно"
+                        android:text="Выезд дизайнера и дизайн-проект"
                         android:textColor="@color/black"
                         android:textSize="18dp" />
 
@@ -283,7 +193,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="4"
-                        android:text="3 года гарантии на мебель"
+                        android:text="Гарантия на мебель"
                         android:textColor="@color/black"
                         android:textSize="18dp" />
 

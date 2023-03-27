@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/button_user_information"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Ваша информация"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,4 +46,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_user_information" />
+
+    <Button
+        android:id="@+id/button_installment_plan"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Рассрочка"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_account" />
+
+    <Button
+        android:id="@+id/button_guarantees"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Гарантии"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_installment_plan" />
+
+    <Button
+        android:id="@+id/button_shipping_and_payment"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Доставка и оплата"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_guarantees" />
 </androidx.constraintlayout.widget.ConstraintLayout>

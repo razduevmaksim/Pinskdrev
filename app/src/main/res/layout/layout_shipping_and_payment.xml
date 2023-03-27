@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.additionalInformation.ShippingAndPaymentFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="60dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Доставка и оплата"
+                android:textColor="@color/light_brown"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="При заказе через интернет-магазин - условия рассрочки не распространяются."
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Оплата"
+                android:textColor="@color/light_brown"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="  - Оплата наличными во время доставки.\n\n
+Доставка производится после обязательного предварительного согласования даты и времени с сотрудником службы доставки по телефону. Кроме того,  курьер свяжется с вами по указанным в заказе телефонным номерам за час до приезда по адресу доставки.\n\n
+  - Онлайн-оплата через ЕРИП\n\n
+1. Для совершения оплаты выберите :\n\n
+  - Система «Расчет» ЕРИП\n\n
+  - Обустройство дома, бытовые услуги\n\n
+  - Мебель\n\n
+  - Выберите наименование организации\n\n
+  - Мебель\n\n
+2. Введите номер договора (12 символов). Номер договора вам сообщит менеджер после подвтерждения заказа.\n\n
+3. Проверьте корректность информации.\n\n
+4. Совершите платеж."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Доставка"
+                android:textColor="@color/light_brown"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Доставляем бесплатно:\n\n
+- в г. Минск (в пределах 1-ой МКАД и 5км. от неё, Боровляны) - до подъезда при покупке в чеке от 500 бел. руб., и при покупке в чеке от 350 бел рублей продукции «Фабрики матрацев». Бесплатная доставка осуществляется до 19.00 по будням. После 19.00 доставка осуществляется на платной основе по тарифам;\n\n
+-  Минская область (в городах, где присутствуют фирменные магазины ТУП «Пинскдрев») - до подъезда при покупке в чеке от 500 бел. руб., и при покупке в чеке от 350 бел рублей продукции «Фабрики матрацев». Бесплатная доставка осуществляется до 19.00 по будням. После 19.00 доставка осуществляется на платной основе по тарифам;\n\n
+- Витебская область (в городах, где присутствуют фирменные магазины ТУП «Пинскдрев») - до подъезда при покупке в чеке от 250 бел. руб., и при покупке в чеке от 200 бел рублей продукции «Фабрики матрацев»;\n\n
+- Гродненская область ( в городах, где присутствуют фирменные магазины ТУП «Пинскдрев») - до подъезда при покупке в чеке от 250 бел. руб., и при покупке в чеке от 200 бел рублей продукции «Фабрики матрацев»;\n\n
+- Могилевская область ( в городах, где присутствуют фирменные магазины ТУП «Пинскдрев») - до подъезда при покупке в чеке от 250 бел. руб., и при покупке в чеке от 200 бел рублей продукции «Фабрики матрацев»;\n\n
+- Гомельская область ( г. Речица, г. Светлогорск, г. Мозырь, г. Гомель) - до подъезда при покупке в чеке от 250 бел. руб., и при покупке в чеке от 200 бел рублей продукции «Фабрики матрацев»;
+-  Бресткая область (г. Брест, г. Барановичи, г. Берёза, г. Пинск) - до подъезда при покупке в чеке от 250 бел. руб., и при покупке в чеке от 200 бел рублей продукции «Фабрики матрацев»."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

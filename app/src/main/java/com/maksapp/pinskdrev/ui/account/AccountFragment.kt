@@ -32,6 +32,18 @@ class AccountFragment : Fragment() {
             it.findNavController()
                 .navigate(R.id.action_navigation_account_to_userInformationFragment)
         }
+        binding.buttonInstallmentPlan.setOnClickListener{
+            it.findNavController()
+                .navigate(R.id.action_navigation_account_to_installmentPlanFragment)
+        }
+        binding.buttonGuarantees.setOnClickListener{
+            it.findNavController()
+                .navigate(R.id.action_navigation_account_to_guaranteesFragment)
+        }
+        binding.buttonShippingAndPayment.setOnClickListener{
+            it.findNavController()
+                .navigate(R.id.action_navigation_account_to_shippingAndPaymentFragment)
+        }
         return root
     }
 

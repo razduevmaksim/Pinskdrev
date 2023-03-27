@@ -12,6 +12,15 @@
         <action
             android:id="@+id/action_navigation_account_to_userInformationFragment"
             app:destination="@id/userInformationFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_installmentPlanFragment"
+            app:destination="@id/installmentPlanFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_shippingAndPaymentFragment"
+            app:destination="@id/shippingAndPaymentFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_guaranteesFragment"
+            app:destination="@id/guaranteesFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_catalog"
@@ -74,6 +83,30 @@
             app:destination="@id/navigation_orders" />
         <action
             android:id="@+id/action_userInformationFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
+    <fragment
+        android:id="@+id/installmentPlanFragment"
+        android:name="com.maksapp.pinskdrev.ui.additionalInformation.InstallmentPlanFragment"
+        android:label="InstallmentPlanFragment" >
+        <action
+            android:id="@+id/action_installmentPlanFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
+    <fragment
+        android:id="@+id/guaranteesFragment"
+        android:name="com.maksapp.pinskdrev.ui.additionalInformation.GuaranteesFragment"
+        android:label="GuaranteesFragment" >
+        <action
+            android:id="@+id/action_guaranteesFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
+    <fragment
+        android:id="@+id/shippingAndPaymentFragment"
+        android:name="com.maksapp.pinskdrev.ui.additionalInformation.ShippingAndPaymentFragment"
+        android:label="ShippingAndPaymentFragment" >
+        <action
+            android:id="@+id/action_shippingAndPaymentFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
     </fragment>
 </navigation>

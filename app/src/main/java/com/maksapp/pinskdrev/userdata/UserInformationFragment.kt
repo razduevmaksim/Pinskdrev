@@ -152,8 +152,6 @@ class UserInformationFragment : Fragment() {
             }
         })
 
-
-
         alert_dialog_button_save.setOnClickListener {
             if (validationFirstName && validationLastName && validationEmail && validationNumber) {
                 preferences = this.requireContext().getSharedPreferences(

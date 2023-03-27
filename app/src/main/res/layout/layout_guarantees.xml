@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.additionalInformation.GuaranteesFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="60dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Гарантии"
+                android:textColor="@color/light_brown"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="На какой срок распространяется гарантия?"
+                android:textColor="@color/light_brown"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Гарантийный срок эксплуатации:\n\n
+1. Корпусной мебели (в соответствии ГОСТ 16371):\n\n
+Детской мебели и мебели для общественных помещений — 18 месяцев; Бытовой — 24 месяца.\n\n
+2. Мебели для сидения и лежания (в соответствии с ГОСТ 19917):\n\n
+Детской и мебели для общественных помещений — 12 месяцев; Бытовой — 18 месяцев.\n\n
+3. Матрасов - 18 месяцев.Подушек и наматрасников - 12 месяцев.\n\n
+Претензии по внешнему виду изделия, некомплекту, механическим повреждениям, а также несоответствию заказа принимаются только непосредственно при покупке изделия. В дальнейшем все работы осуществляются за счет покупателя."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="На каких условиях действует гарантия?"
+                android:textColor="@color/light_brown"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Гарантийный срок начинает действовать с того дня, когда вы приобрели мебель. Бесплатное обслуживание предоставляется в течение гарантийного срока  при соблюдении условий перевозки мебели, правил ее эксплуатации и ухода, и при предоставлении заполненного гарантийного талона с проставленной датой продажи. Бесплатное гарантийное обслуживание распространяется на недостатки в мебели, возникшие по вине производителя, продавца."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Что делать, если вы обнаружили брак?"
+                android:textColor="@color/light_brown"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Если во время  распаковки покупки и/или ее сборки вы нашли дефект, остановите все работы с использованием поврежденного элемента. Дополнительно отметим, что упаковку выбрасывать не стоит.\n\nЕсли у вас есть возможность, зафиксируйте на фото и/или видео обнаруженные недостатки.\n\nОбратитесь в магазин, в котором вы совершили данную покупку для оформления заявления.\n\nПриложенные к заявлению фото и /или видео материалы могут быть полезны при рассмотрении обращения."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Сроки службы товаров?"
+                android:textColor="@color/light_brown"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=" мягкая мебель - 2 года.\n\n
+корпусная мебель - 2 года.\n\n
+матрасы - до 5 лет.\n\n
+подушки и наматрасники - 2 года."
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
