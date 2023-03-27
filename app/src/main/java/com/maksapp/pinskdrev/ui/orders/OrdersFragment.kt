@@ -24,6 +24,7 @@ class OrdersFragment : Fragment() {
     private var _binding: FragmentOrdersBinding? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewOrdersAdapter
+    var orderListValidation = true
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -56,6 +57,8 @@ class OrdersFragment : Fragment() {
             if (userFirstName!!.isEmpty() || userLastName!!.isEmpty() || userEmail!!.isEmpty() || userPhone!!.isEmpty()) {
                 it.findNavController()
                     .navigate(R.id.action_navigation_orders_to_userInformationFragment)
+            } else if (orderListValidation) {
+                Toast.makeText(context, "В листе заказов ничего нет", Toast.LENGTH_SHORT).show()
             } else {
                 database = FirebaseDatabase.getInstance().getReference("Users")
                 val user = User(userFirstName, userLastName, userEmail, userPhone)
@@ -125,6 +128,12 @@ class OrdersFragment : Fragment() {
         //чтение данных
         viewModel.getAll().observe(viewLifecycleOwner) { listOrders ->
             adapter.setList(listOrders)
+            if (listOrders.isEmpty()) {
+                orderListValidation = true
+            } else {
+                orderListValidation = false
+            }
+
         }
     }
 }
