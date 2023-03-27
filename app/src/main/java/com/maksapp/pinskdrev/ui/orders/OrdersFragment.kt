@@ -24,7 +24,8 @@ class OrdersFragment : Fragment() {
     private var _binding: FragmentOrdersBinding? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewOrdersAdapter
-    var orderListValidation = true
+    private var orderListValidation = true
+    private var order: String? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,7 +34,7 @@ class OrdersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val ordersViewModel = ViewModelProvider(this).get(OrdersViewModel::class.java)
+        val ordersViewModel = ViewModelProvider(this)[OrdersViewModel::class.java]
 
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -61,7 +62,7 @@ class OrdersFragment : Fragment() {
                 Toast.makeText(context, "В листе заказов ничего нет", Toast.LENGTH_SHORT).show()
             } else {
                 database = FirebaseDatabase.getInstance().getReference("Users")
-                val user = User(userFirstName, userLastName, userEmail, userPhone)
+                val user = User(userFirstName, userLastName, userEmail, userPhone, order)
                 database.child(userFirstName + userLastName).setValue(user).addOnSuccessListener {
                     Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
@@ -126,12 +127,15 @@ class OrdersFragment : Fragment() {
         recyclerView.adapter = adapter
 
         //чтение данных
+        var count = 0
         viewModel.getAll().observe(viewLifecycleOwner) { listOrders ->
             adapter.setList(listOrders)
-            if (listOrders.isEmpty()) {
-                orderListValidation = true
-            } else {
-                orderListValidation = false
+            orderListValidation = listOrders.isEmpty()
+            for (i in listOrders) {
+                val listOrdersProductId = i.productIdDefault.toString()
+                val listOrdersProductName = i.productName.toString()
+                count += 1
+                order += "Product №${count}: ProductId - $listOrdersProductId, ProductName - $listOrdersProductName; \n"
             }
 
         }

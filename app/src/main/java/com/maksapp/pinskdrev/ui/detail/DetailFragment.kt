@@ -100,7 +100,6 @@ class DetailFragment : Fragment() {
                 if (validationInValidation) {
                     var validationAccuracy = true
                     listProducts.forEach { itemList ->
-                        //проверка на добавление точки в соответствии с точностью трекинга геолокации
                         var productNameInDatabase = itemList.productName.toString()
 
 
@@ -115,11 +114,13 @@ class DetailFragment : Fragment() {
                     }
                     if (validationAccuracy) {
                         //добавление данных в room
+                        var productIdInDatabase = Common.product_selected!!.id.toString()
                         var productNameInDatabase = Common.product_selected!!.name.toString()
                         var productPriceInDatabase = Common.product_selected!!.price.toString()
                         var productImageInDatabase = Common.product_selected!!.image
                         var productQuantityInDatabase = countProducts!!.text.toString()
                         insertToDatabase(
+                            productIdInDatabase,
                             productNameInDatabase,
                             productImageInDatabase,
                             productPriceInDatabase,
@@ -136,7 +137,7 @@ class DetailFragment : Fragment() {
 
     //добавление данных в room
     private fun insertToDatabase(
-        productName: String, productImage: String?, productPrice: String, productQuantity: String
+        productId:String, productName: String, productImage: String?, productPrice: String, productQuantity: String
     ) {
         val viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
@@ -145,6 +146,7 @@ class DetailFragment : Fragment() {
 
         viewModel.insert(
             CartItem(
+                productIdDefault = productId,
                 productName = productName.toString(),
                 productImage = productImage,
                 productPrice = productPrice.toString(),

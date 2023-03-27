@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull
 class CartItem(
     @PrimaryKey(autoGenerate = true) var productId: Int = 0,
 
+    @ColumnInfo(name = "productIdDefault") var productIdDefault: String? = null,
+
     @ColumnInfo(name = "productName") var productName: String? = null,
 
     @ColumnInfo(name = "productImage") var productImage: String? = null,
