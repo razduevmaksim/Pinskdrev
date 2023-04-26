@@ -30,6 +30,8 @@ class NewOrdersAdapter(internal var context: Context) :
         //установка значений в TextView
         holder.itemView.item_title.text = listOrders[position].productName
         Glide.with(context).load(listOrders[position].productImage).into(holder.itemView.item_image)
+        holder.itemView.text_view_detail_price.text = listOrders[position].productPrice
+        holder.itemView.text_view_detail_quantity.text = listOrders[position].productQuantity
 
         //вызов диалогового окна при клике на кнопку Delete.
         holder.itemView.button_delete.setOnClickListener {

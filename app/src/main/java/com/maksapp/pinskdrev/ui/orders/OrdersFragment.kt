@@ -135,10 +135,11 @@ class OrdersFragment : Fragment() {
             for (i in listOrders) {
                 val listOrdersProductId = i.productIdDefault.toString()
                 val listOrdersProductName = i.productName.toString()
+                val listOrdersProductPrice = i.productPrice.toString()
+                val listOrdersProductQuantity = i.productQuantity.toString()
                 count += 1
-                order += "Product №${count}: ProductId - $listOrdersProductId, ProductName - $listOrdersProductName; \n"
+                order += "Product №${count}: ProductId - $listOrdersProductId, ProductName - $listOrdersProductName, ProductPrice - $listOrdersProductPrice, ProductQuantity - $listOrdersProductQuantity; \n"
             }
-
         }
     }
 }

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="230dp"
     android:layout_margin="10dp"
     android:clickable="true"
     app:cardCornerRadius="20dp"
@@ -15,20 +15,98 @@
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:hint="Title"
-            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/linear_layout_order_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_title">
+            <TextView
+                android:id="@+id/text_view_detail_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:text="Cтоимость:"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_view_detail_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="10000"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_view_detail_rubles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="руб"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_layout_order_item_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_order_item_price">
+
+            <TextView
+                android:id="@+id/text_view_detail_quantity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:text="Количество:"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_view_detail_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:scaleType="fitXY"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +123,7 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_title" />
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_order_item_quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

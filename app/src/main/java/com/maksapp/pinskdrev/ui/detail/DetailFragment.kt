@@ -71,8 +71,8 @@ class DetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun changeNumber() {
         buttonMinus!!.setOnClickListener {
-            if (countProducts!!.text.toString().toInt() <= 0) {
-                countProducts!!.text = (0).toString()
+            if (countProducts!!.text.toString().toInt() <= 1) {
+                countProducts!!.text = (1).toString()
             } else {
                 countProducts!!.text = (countProducts!!.text.toString().toInt() - 1).toString()
             }
